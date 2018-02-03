@@ -1,1 +1,1 @@
-# forfun
+for training
