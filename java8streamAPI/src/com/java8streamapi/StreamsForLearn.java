@@ -3,9 +3,7 @@
  */
 package com.java8streamapi;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -327,7 +325,91 @@ public class StreamsForLearn {
 		Stream.of(120, 410, 85, 32, 314, 12)
 	    		.forEach(x -> System.out.format("%s, ", x));
 		System.out.println();
-		
+		System.out.println();
+
+//		void forEachOrdered​(Consumer action)
+//		Тоже выполняет указанное действие для каждого элемента стрима, но перед этим добивается правильного порядка
+//		вхождения элементов. Используется для параллельных стримов, когда нужно получить правильную последовательность
+//		элементов.
+		IntStream.range(0, 100000)
+				.parallel()
+				.filter(x -> x % 10000 == 0)
+				.map(x -> x / 10000)
+				.forEach(System.out::println);
+		System.out.println();
+		IntStream.range(0, 100000)
+				.parallel()
+				.filter(x -> x % 10000 == 0)
+				.map(x -> x / 10000)
+				.forEachOrdered(System.out::println);
+		System.out.println();
+
+//		long count​()
+//		Возвращает количество элементов стрима.
+		long count = IntStream.range(0, 10)
+				.flatMap(x -> IntStream.range(0, x))
+				.count();
+		System.out.println(count);
+		System.out.println();
+
+//		R collect​(Collector collector)
+//		Один из самых мощных операторов Stream API. С его помощью можно собрать все элементы в список, множество или
+//		другую коллекцию, сгруппировать элементы по какому-нибудь критерию, объединить всё в строку и т.д.. В классе
+//		java.util.stream.Collectors очень много методов на все случаи жизни, мы рассмотрим их позже. При желании можно
+//		написать свой коллектор, реализовав интерфейс Collector.
+		List<Integer> list = Stream.of(1,3,4,5)
+				.collect(Collectors.toList());
+		System.out.println(list);
+		System.out.println(Stream.of(1, 2, 3)
+				.map(String::valueOf)
+				.collect(Collectors.joining("-", "<", ">")));
+		System.out.println();
+
+//		R collect​(Supplier supplier, BiConsumer accumulator, BiConsumer combiner)
+//		То же, что и collect(collector), только параметры разбиты для удобства. Если нужно быстро сделать какую-то
+//		операцию, нет нужды реализовывать интерфейс Collector, достаточно передать три лямбда-выражения.
+//		supplier должен поставлять новые объекты (контейнеры), например new ArrayList(), accumulator добавляет элемент
+//		в контейнер, combiner необходим для параллельных стримов и объединяет части стрима воедино.
+		List<String> stringList = Stream.of("a", "b", "c", "d")
+				.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+		System.out.println(stringList);
+		System.out.println();
+
+//		Object[] toArray​()
+//		Возвращает нетипизированный массив с элементами стрима.
+//
+//		A[] toArray​(IntFunction<A[]> generator)
+//		Аналогично, только возвращает типизированный массив.
+		String[] elements = Stream.of("a", "b", "c")
+				.toArray(String[]::new);
+		Stream.of(elements)
+				.forEach(x -> System.out.print(x + " "));
+		System.out.println();
+		System.out.println();
+
+//		T reduce​(T identity, BinaryOperator accumulator)
+//		U reduce​(U identity, BiFunction accumulator, BinaryOperator combiner)
+//		Ещё один полезный оператор. Позволяет преобразовать все элементы стрима в один объект. Например, посчитать
+//		сумму всех элементов, либо найти минимальный элемент.
+//		Сперва берётся объект identity и первый элемент стрима, применяется функция accumulator и identity становится
+//		её результатом. Затем всё продолжается для остальных элементов.
+		int sum = Stream.of(1, 2, 3, 4, 5)
+				.reduce(10, (acc, x) -> acc + x);
+		System.out.println(sum);
+		System.out.println();
+
+//		Optional reduce​(BinaryOperator accumulator)
+//		Этот метод отличается тем, что у него нет начального объекта identity. В качестве него служит первый элемент
+//		стрима. Поскольку стрим может быть пустой и тогда identity объект не присвоится, то результатом функции служит
+//		Optional, позволяющий обработать и эту ситуацию, вернув Optional.empty().
+		Optional<Integer> result = Stream.<Integer>empty()
+				.reduce((acc, x) -> acc + x);
+		System.out.println(result.isPresent());
+		Optional<Integer> sumi = Stream.of(1, 2, 3, 4, 5)
+				.reduce((acc, x) -> acc + x);
+		System.out.println(sumi.get());
+		System.out.println();
+
 		
 	}
 }
