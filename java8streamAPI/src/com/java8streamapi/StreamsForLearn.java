@@ -410,6 +410,36 @@ public class StreamsForLearn {
 		System.out.println(sumi.get());
 		System.out.println();
 
-		
+//      Optional min​(Comparator comparator)
+//      Optional max​(Comparator comparator)
+//      Поиск минимального/максимального элемента, основываясь на переданном компараторе. Внутри вызывается reduce
+        System.out.println(Stream.of(12, 32, 2, 4)
+                .min(Integer::compareTo).get());
+        System.out.println(Stream.of(12, 32, 2, 4)
+                .max(Integer::compareTo).get());
+        System.out.println();
+
+//      Optional findAny​()
+//      Возвращает первый попавшийся элемент стрима. В параллельных стримах это может быть действительно любой элемент,
+//      который лежал в разбитой части последовательности.
+//
+//      Optional findFirst​()
+//      Гарантированно возвращает первый элемент стрима, даже если стрим параллельный.
+//      Если нужен любой элемент, то для параллельных стримов быстрее будет работать findAny().
+        System.out.println(IntStream.range(4, 22411)
+                .findAny()
+                .getAsInt());
+        System.out.println(IntStream.range(4, 22411)
+                .findFirst()
+                .getAsInt());
+        System.out.println(IntStream.range(4, 22411)
+                .parallel()
+                .findAny()
+                .getAsInt());
+        System.out.println(IntStream.range(4, 22411)
+                .parallel()
+                .findFirst()
+                .getAsInt());
+		System.out.println();
 	}
 }
