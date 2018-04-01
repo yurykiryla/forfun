@@ -31,6 +31,7 @@ public class StreamsForLearn {
 		sfl.sources();
 		sfl.middleOperators();
 		sfl.terminal();
+		sfl.collectors();
 	}
 
 	/**
@@ -440,6 +441,74 @@ public class StreamsForLearn {
                 .parallel()
                 .findFirst()
                 .getAsInt());
+		System.out.println();
+
+//		boolean allMatch​(Predicate predicate)
+//		Возвращает true, если все элементы стрима удовлетворяют условию predicate. Если встречается какой-либо
+//		элемент, для которого результат вызова функции-предиката будет false, то оператор перестаёт просматривать
+//		элементы и возвращает false.
+		System.out.println(Stream.of(1, 2, 3, 4, 5)
+				.allMatch(x -> x < 7));
+		System.out.println(Stream.of(1, 2, 3, 4, 5)
+				.allMatch(x -> x < 3));
+		System.out.println();
+
+//		boolean anyMatch​(Predicate predicate)
+//		Возвращает true, если хотя бы один элемент стрима удовлетворяет условию predicate. Если такой элемент
+//		встретился, нет смысла продолжать перебор элементов, поэтому сразу возвращается результат.
+		System.out.println(Stream.of(1, 2, 3 ,4 ,5)
+				.anyMatch(x -> x == 3));
+		System.out.println(Stream.of(1, 2, 3 ,4 ,5)
+				.anyMatch(x -> x == 8));
+		System.out.println();
+
+//		boolean noneMatch​(Predicate predicate)
+//		Возвращает true, если, пройдя все элементы стрима, ни один не удовлетворил условию predicate. Если встречается
+//		какой-либо элемент, для которого результат вызова функции-предиката будет true, то оператор перестаёт
+//		перебирать элементы и возвращает false.
+		System.out.println(Stream.of(1, 2, 3, 4, 5)
+				.noneMatch(x -> x == 8));
+		System.out.println(Stream.of(1, 2, 3, 4, 5)
+				.noneMatch(x -> x == 2));
+		System.out.println();
+
+//		OptionalDouble average​()
+//		Только для примитивных стримов. Возвращает среднее арифметическое всех элементов. Либо Optional.empty, если
+//		стрим пуст.
+		System.out.println(IntStream.range(5, 45)
+				.average()
+				.getAsDouble());
+		System.out.println();
+
+//		IntSummaryStatistics summaryStatistics()
+//		Полезный метод примитивных стримов. Позволяет собрать статистику о числовой последовательности стрима,
+//		а именно: количество элементов, их сумму, среднее арифметическое, минимальный и максимальный элемент.
+		LongSummaryStatistics stats = LongStream.range(2, 43)
+				.summaryStatistics();
+		System.out.format("  count: %d%n", stats.getCount());
+		System.out.format("    sum: %d%n", stats.getSum());
+		System.out.format("average: %.1f%n", stats.getAverage());
+		System.out.format("    min: %d%n", stats.getMin());
+		System.out.format("    max: %d%n", stats.getMax());
+		System.out.println();
+	}
+
+	/**
+	 * Методы Collectors
+	 */
+	public void collectors() {
+//		toList​()
+//		Самый распространённый метод. Собирает элементы в List.
+		List<Integer> list = Stream.of(2, 4, 6, 4, 3, 4)
+				.collect(Collectors.toList());
+		System.out.println(list);
+		System.out.println();
+
+//		toSet​()
+//		Собирает элементы в множество.
+		Set<Integer> set = Stream.of(3, 2, 3, 5, 3, 4, 5, 8)
+				.collect(Collectors.toSet());
+		System.out.println(set);
 		System.out.println();
 	}
 }
