@@ -4,6 +4,7 @@
 package com.java8streamapi;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -510,5 +511,103 @@ public class StreamsForLearn {
 				.collect(Collectors.toSet());
 		System.out.println(set);
 		System.out.println();
+
+//		toCollection​(Supplier collectionFactory)
+//		Собирает элементы в заданную коллекцию. Если нужно конкретно указать, какой List, Set или другую коллекцию
+//		мы хотим использовать, то этот метод поможет.
+		Deque<Integer> deque = Stream.of(1, 2, 3)
+				.collect(Collectors.toCollection(ArrayDeque::new));
+		System.out.println(deque);
+		Set<Integer> lhSet = Stream.of(1, 2, 3, 4, 5)
+				.collect(Collectors.toCollection(LinkedHashSet::new));
+		System.out.println(lhSet);
+		System.out.println();
+
+//		toMap​(Function keyMapper, Function valueMapper)
+//		Собирает элементы в Map. Каждый элемент преобразовывается в ключ и в значение, основываясь на результате
+//		функций keyMapper и valueMapper соответственно. Если нужно вернуть тот же элемент, что и пришел, то можно
+//		передать Function.identity().
+		Map<Integer, Integer> map1 = Stream.of(1, 2, 3, 4, 5)
+				.collect(Collectors.toMap(
+						Function.identity(),
+						Function.identity()
+				));
+		System.out.println(map1);
+		Map<Integer, String> map2 = Stream.of(1, 2, 3)
+				.collect(Collectors.toMap(
+						Function.identity(),
+						i -> String.format("\"%d * 2 = %d\"", i, i * 2)
+				));
+		System.out.println(map2);
+		Map<Character, String> map3 = Stream.of(50, 54, 55)
+				.collect(Collectors.toMap(
+						i -> (char) i.intValue(),
+						i -> String.format("<%d>", i)
+				));
+		map3.entrySet().stream()
+				.forEach(x -> System.out.format("'%s'=\"%s\"", x.getKey(), x.getValue()));
+		System.out.println();
+		System.out.println();
+
+//		toMap​(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction)
+//		Аналогичен первой версии метода, только в случае, когда встречается два одинаковых ключа, позволяет
+//		объединить значения.t
+		Map<Integer, String> map4 = Stream.of(50, 55, 69, 20, 19, 52)
+				.collect(Collectors.toMap(
+						i -> i % 5,
+						i -> String.format("<%d>", i),
+						(a, b) -> String.join(", ", a, b)
+				));
+		System.out.println(map4);
+
+//		toMap​(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction, Supplier mapFactory)
+//		Всё то же, только позволяет указывать, какой именно класс Map использовать.
+		Map<Integer, String> map5 = Stream.of(50, 55, 69, 20, 19, 52)
+				.collect(Collectors.toMap(
+						i -> i % 5,
+						i -> String.format("<%d>", i),
+						(a, b) -> String.join(", ", a, b),
+						LinkedHashMap::new
+				));
+		System.out.println(map5);
+		System.out.println();
+
+//		toConcurrentMap​(Function keyMapper, Function valueMapper)
+//		toConcurrentMap​(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction)
+//		toConcurrentMap​(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction, Supplier mapFactory)
+//		Всё то же самое, что и toMap, только работаем с ConcurrentMap.
+		Map<Integer, String> cMap = Stream.of(2, 4, 1, 3)
+				.collect(Collectors.toConcurrentMap(
+						Function.identity(),
+						String::valueOf
+				));
+		System.out.println(cMap);
+		System.out.println();
+
+//		collectingAndThen​(Collector downstream, Function finisher)
+//		Собирает элементы с помощью указанного коллектора, а потом применяет к полученному результату функцию.
+		List<Integer> list1 = Stream.of(1, 2, 3 ,4, 5)
+				.collect(Collectors.collectingAndThen(
+						Collectors.toList(),
+						Collections::unmodifiableList
+				));
+		System.out.println(list1.getClass());
+		List<String> list2 = Stream.of("a", "b", "c", "d")
+				.collect(Collectors.collectingAndThen(
+						Collectors.toMap(
+								Function.identity(),
+								s -> s + s
+						),
+						map -> map.entrySet().stream()
+				))
+				.map(e -> e.toString())
+				.collect(Collectors.collectingAndThen(
+						Collectors.toList(),
+						Collections::unmodifiableList
+				));
+		list2.forEach(System.out::println);
+		System.out.println();
+
+
 	}
 }
