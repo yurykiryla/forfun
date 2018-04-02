@@ -1,16 +1,18 @@
 package grokeam.alg.ch1;
 
+import java.util.Optional;
+
 public class BinarySearch {
 	
-	public Integer search(int[] array, int value) {
+	public Optional<Integer> search(int[] array, int value) {
 		int first = 0;
 		int last = array.length - 1;
-		
+
 		while (first <= last) {
 			int i = (first + last) / 2;
 			int guess = array[i];
 			if (guess == value) {
-				return guess;
+				return Optional.of(guess);
 			}
 			
 			if (guess > value) {
@@ -20,7 +22,7 @@ public class BinarySearch {
 			}
 		}
 		
-		return null;
+		return Optional.empty();
 	}
 
 }
