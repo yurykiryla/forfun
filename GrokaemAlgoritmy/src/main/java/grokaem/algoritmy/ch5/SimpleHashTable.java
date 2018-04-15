@@ -16,7 +16,7 @@ public class SimpleHashTable<T> {
         long count = Stream.of(values)
                 .filter(x -> x != null)
                 .count();
-        if ((double)(count + 1) / values.length > 0.7) {
+        if ((double)(count + 1) / values.length > LOAD_FACTOR) {
             resize();
         }
         values[hash(value)] = value;
