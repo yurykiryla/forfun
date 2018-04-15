@@ -8,3 +8,9 @@
 .idea/
 out/
 */*.iml
+*/.gradle/
+*/gradle/
+*/build/
+*/*.ipr
+*/*.iws
+*/gradlew*
