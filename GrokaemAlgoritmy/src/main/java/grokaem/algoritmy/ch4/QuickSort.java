@@ -18,7 +18,7 @@ public class QuickSort {
         }
     }
 
-    public int count(List list) {
+    public int count(List<Integer> list) {
         if (list == null || list.isEmpty()) {
             return 0;
         } else {

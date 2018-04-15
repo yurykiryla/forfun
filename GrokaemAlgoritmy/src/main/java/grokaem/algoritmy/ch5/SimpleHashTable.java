@@ -8,7 +8,8 @@ public class SimpleHashTable<T> {
 
     private final double LOAD_FACTOR = 0.7;
 
-    public SimpleHashTable() {
+    @SuppressWarnings("unchecked")
+	public SimpleHashTable() {
         values = (T[]) new Object[16];
     }
 
@@ -30,7 +31,8 @@ public class SimpleHashTable<T> {
         return value.hashCode() % values.length;
     }
 
-    private void resize() {
+    @SuppressWarnings("unchecked")
+	private void resize() {
         T[] newValues = (T[]) new Object[values.length * 2];
         for (T value : values) {
             newValues[value.hashCode() % (values.length * 2)] = value;
