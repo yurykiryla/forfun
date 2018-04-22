@@ -9,6 +9,7 @@
 out/
 */*.iml
 */.gradle/
+*/.settings/
 */gradle/
 */build/
 */*.ipr
