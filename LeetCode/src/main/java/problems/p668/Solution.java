@@ -58,4 +58,22 @@ public class Solution {
         return result;
     }
 
+    public int findKthNumberBinary(int m, int n, int k) {
+    	int left = 1;
+    	int right = m * n;
+    	
+    	while(left < right) {
+    		int middle = (right - left) / 2 + left;
+    		int count = 0;
+    		for (int i = 1; i <= m; i++) {
+    			count += Math.min(n, middle / i);
+    		}
+    		if (count < k) {
+    			left = middle + 1;
+    		} else {
+    			right = middle;
+    		}
+    	}
+    	return left;
+    }
 }

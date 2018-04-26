@@ -19,4 +19,9 @@ class SolutionTest {
 		assertEquals(170, actual);
 	}
 
+	@Test
+	void testFindKthNumberBinary() {
+		int actual = solution.findKthNumberBinary(300, 400, 900);
+		assertEquals(170, actual);
+	}
 }
