@@ -1,6 +1,7 @@
 package problems.p16;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class Solution {
 	public int threeSumClosest(int[] nums, int target) {
@@ -8,6 +9,9 @@ public class Solution {
             return 0;
         }
         
+        if (nums.length <= 3) {
+        	return IntStream.of(nums).sum();
+        }
         Arrays.sort(nums);
         
         int result = nums[0] + nums[1] + nums[nums.length - 1];
@@ -17,6 +21,9 @@ public class Solution {
             int end = nums.length - 1;
             while (start < end) {
                 int sum = nums[i] + nums[start] + nums[end];
+                if (sum == target) {
+                	return sum;
+                }
                 if (sum > target) {
                     end--;
                 } else {
