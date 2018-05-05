@@ -1,7 +1,5 @@
 package problems.p002;
 
-import java.util.Stack;
-
 /**
  * https://leetcode.com/problems/add-two-numbers/description/
  * 
@@ -15,46 +13,52 @@ import java.util.Stack;
  *
  */
 public class AddTwoNumbers {
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		Stack<ListNode> stack1 = convertToStack(l1);
-		Stack<ListNode> stack2 = convertToStack(l2);
-
-		ListNode result = null;
-
-		while (!stack1.empty() && !stack2.empty()) {
-			ListNode current1 = stack1.empty() ? null : stack1.pop();
-			ListNode current2 = stack2.empty() ? null : stack2.pop();
-
-			int amount = 0;
-			if (current1 != null) {
-				amount += current1.val;
-			}
-			if (current2 != null) {
-				amount += current2.val;
-			}
-
-			ListNode upper = new ListNode(0);
-			if (amount >= 10) {
-				upper.val = 1;
-				amount -= 10;
-			}
-			result = new ListNode(amount);
-			upper.next = result;
-			result = upper;
-		}
-
-		return result;
-	}
-
-	private Stack<ListNode> convertToStack(ListNode listNode) {
-		Stack<ListNode> result = new Stack<>();
-		ListNode current = listNode;
-
-		while (current != null) {
-			result.push(current);
-			current = current.next;
-		}
-
-		return result;
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null && l2 == null) {
+            return null;
+        }
+        
+        ListNode root = null;
+        ListNode parent = null;
+        ListNode current = null;
+        
+        do {
+            int amount = 0;
+            
+            if (l1 != null) {
+                amount += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                amount += l2.val;
+                l2 = l2.next;
+            }
+            if (current != null) {
+                amount += current.val;
+            } else {
+                current = new ListNode(0);
+            }
+            if (root == null) {
+                root = current;
+                parent = current;
+            } else if (root.next == null) {
+                root.next = current;
+            } else {
+                parent.next = current;
+            }
+            ListNode next = null;
+            if (amount >= 10) {
+                next = new ListNode(1);
+                amount -= 10;
+            }
+            
+            current.val = amount;
+            parent = current;
+            parent.next = next;
+            current = next;
+            
+        } while (l1 != null || l2 != null);
+        
+        return root;
 	}
 }
