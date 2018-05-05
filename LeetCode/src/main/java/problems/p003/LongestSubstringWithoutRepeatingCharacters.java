@@ -34,9 +34,9 @@ public class LongestSubstringWithoutRepeatingCharacters {
                 int index = chars.put(current, i);
                 if (index >= last) {
                     sequence = i - index;
-                    last = index;
+                    last = i;
                 } else {
-                    sequence = i - last;
+                    sequence = i - last + 1;
                 }
             } else {
                 chars.put(current, i);
