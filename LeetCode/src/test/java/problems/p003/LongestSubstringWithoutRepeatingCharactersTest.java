@@ -49,7 +49,7 @@ class LongestSubstringWithoutRepeatingCharactersTest {
 	@Test
 	void testLengthOfLongestSubstring_dvdf() {
 		String s = "dvdf";
-		int expected = 5;
+		int expected = 3;
 		int actual = solution.lengthOfLongestSubstring(s);
 		assertEquals(expected, actual);
 	}
@@ -89,7 +89,7 @@ class LongestSubstringWithoutRepeatingCharactersTest {
 	@Test
 	void testLengthOfLongestSubstringDoubleLoop_dvdf() {
 		String s = "dvdf";
-		int expected = 5;
+		int expected = 3;
 		int actual = solution.lengthOfLongestSubstringDoubleLoop(s);
 		assertEquals(expected, actual);
 	}

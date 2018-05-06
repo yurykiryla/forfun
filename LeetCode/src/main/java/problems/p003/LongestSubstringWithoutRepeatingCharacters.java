@@ -24,7 +24,6 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
         int result = 1;
         
-        //"pwwkew"tmmzuxt"abcabcbb"bbbbb"
         Map<Character, Integer> chars = new HashMap<>();
         int last = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -34,7 +33,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
                 int index = chars.put(current, i);
                 if (index >= last) {
                     sequence = i - index;
-                    last = i;
+                    last = index + 1;
                 } else {
                     sequence = i - last + 1;
                 }
