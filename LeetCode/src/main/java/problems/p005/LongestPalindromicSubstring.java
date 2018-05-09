@@ -62,4 +62,56 @@ public class LongestPalindromicSubstring {
         }
         return new String(chars);
     }
+    
+    public String longestPalindromeSimple(String s) {
+        if (s == null || s.isEmpty()) {
+            return "";
+        }
+        
+        if (s.length() == 1) {
+            return s;
+        }
+        
+        String result = s.substring(0, 1);
+        
+        for (int i = 1; i < s.length() * 2 - 2; i++){
+            if (i % 2 == 1) {
+                int range = Math.min((s.length() * 2 - i) / 2, i / 2 + 1);
+                int leftIndex = i / 2;
+                int rightIndex = i / 2 + 1;
+                int leftEnd = leftIndex - range + 1;
+                while (leftIndex >= leftEnd) {
+                    if (s.charAt(leftIndex) == s.charAt(rightIndex)) {
+                        int length = rightIndex - leftIndex + 1;
+                        if (length > result.length()) {
+                            result = s.substring(leftIndex, rightIndex + 1);
+                        }
+                        leftIndex--;
+                        rightIndex++;
+                    } else {
+                        break;
+                    }
+                }
+            } else {
+                int range = Math.min(i / 2, s.length() - i / 2 - 1);
+                int leftIndex = i / 2 - 1;
+                int rightIndex = i / 2 + 1;
+                int leftEnd = leftIndex - range + 1;
+                while (leftIndex >= leftEnd) {
+                    if (s.charAt(leftIndex) == s.charAt(rightIndex)) {
+                        int length = rightIndex - leftIndex + 1;
+                        if (length > result.length()) {
+                            result = s.substring(leftIndex, rightIndex + 1);
+                        }
+                        leftIndex--;
+                        rightIndex++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        
+        return result;
+    }
 }
