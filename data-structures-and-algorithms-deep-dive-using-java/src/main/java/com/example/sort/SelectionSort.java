@@ -9,17 +9,19 @@ import com.example.utils.Utilities;
  * @author Yury_Kiryla
  *
  */
-public class BubbleSort {
-	
+public class SelectionSort {
+
 	private Utilities utilities = new Utilities();
-	
+
 	public void sort(int[] array) {
 		for (int i = array.length - 1; i > 0; i--) {
-			for (int j = 0; j < i; j++) {
-				if (array[j] > array[j + 1]) {
-					utilities.swap(array, j, j + 1);
+			int max = 0;
+			for (int j = 1; j <= i; j++) {
+				if (array[j] > array[max]) {
+					max = j;
 				}
 			}
+			utilities.swap(array, i, max);
 		}
 	}
 
