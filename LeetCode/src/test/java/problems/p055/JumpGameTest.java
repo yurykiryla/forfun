@@ -1,6 +1,8 @@
-package problems.p55;
+package problems.p055;
 
 import org.junit.jupiter.api.BeforeEach;
+
+import problems.p055.JumpGame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
