@@ -5,6 +5,8 @@ package com.example.sort;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,11 +31,20 @@ public class MergeSortTest {
 	 */
 	@Test
 	public void testSort() {
-		int[] array = {2, -4, 6, 22, -15, 5, 8};
+		int[] array = new Random().ints(500000000, 1, 1000).toArray();
 		solution.sort(array);
 		for (int i = 0; i < array.length - 2; i ++) {
 			assertTrue(array[i] <= array[i + 1]);
 		}
 	}
 
+	
+	@Test
+	public void descendingSortTest() {
+		int[] array = new Random().ints(500000000, 1, 1000).toArray();
+		solution.descendingSort(array);
+		for (int i = 0; i < array.length - 2; i ++) {
+			assertTrue(array[i] >= array[i + 1]);
+		}
+	}
 }
