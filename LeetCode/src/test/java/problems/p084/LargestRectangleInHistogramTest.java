@@ -1,4 +1,4 @@
-package problems.p84;
+package problems.p084;
 
 import static org.junit.jupiter.api.Assertions.*;
 
