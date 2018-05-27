@@ -71,4 +71,58 @@ public class MergeKSortedLists {
         
         return result;
     }
+	
+	public ListNode recursiveMergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        
+        if (lists.length == 1) {
+            return lists[0];
+        }
+
+        int mid = lists.length / 2;
+        ListNode[] leftArray = new ListNode[mid];
+        ListNode[] rightArray = new ListNode[lists.length - mid];
+        System.arraycopy(lists, 0, leftArray, 0, mid);
+        System.arraycopy(lists, mid, rightArray, 0, rightArray.length);
+        return merge(recursiveMergeKLists(leftArray), recursiveMergeKLists(rightArray));
+    }
+        
+    private ListNode merge(ListNode left, ListNode right) {
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        ListNode result = null;
+        if (left.val <= right.val) {
+            result = left;
+            left = left.next;
+        } else {
+            result = right;
+            right = right.next;
+        }
+        
+        ListNode current = result;
+        
+        while (left != null && right != null) {
+            if (left.val <= right.val) {
+                current.next = left;
+                left = left.next;
+            } else {
+                current.next = right;
+                right = right.next;
+            }
+            current = current.next;
+        }
+        if (left != null) {
+            current.next = left;
+        } else {
+            current.next = right;
+        }
+        
+        return result;
+    }
 }
