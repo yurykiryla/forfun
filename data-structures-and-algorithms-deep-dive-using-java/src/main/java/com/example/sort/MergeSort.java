@@ -66,7 +66,7 @@ public class MergeSort {
 		}
 		
 		private void merge(int[] input, int start, int mid, int end) {
-			if (input[mid] > input[mid - 1]) {
+			if (input[mid] >= input[mid - 1]) {
 				int i = start;
 				int j = mid;
 				int tempIndex = 0;

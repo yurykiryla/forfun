@@ -31,7 +31,7 @@ public class MergeSortTest {
 	 */
 	@Test
 	public void testSort() {
-		int[] array = new Random().ints(500000000, 1, 1000).toArray();
+		int[] array = new Random().ints(5000000, 1, 1000).toArray();
 		solution.sort(array);
 		for (int i = 0; i < array.length - 2; i ++) {
 			assertTrue(array[i] <= array[i + 1]);
@@ -41,7 +41,7 @@ public class MergeSortTest {
 	
 	@Test
 	public void descendingSortTest() {
-		int[] array = new Random().ints(500000000, 1, 1000).toArray();
+		int[] array = new Random().ints(5000000, 1, 1000).toArray();
 		solution.descendingSort(array);
 		for (int i = 0; i < array.length - 2; i ++) {
 			assertTrue(array[i] >= array[i + 1]);
