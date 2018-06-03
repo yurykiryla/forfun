@@ -38,4 +38,12 @@ public class RadixSortTest {
 		}
 	}
 
+	@Test
+	public void testSortString() {
+		String[] array = {"bcdef", "dbaqc", "abcde", "omadd", "bbbbb"};
+		solution.sort(array);
+		for (int i = 0; i < array.length - 2; i++) {
+			assertTrue(array[i].compareTo(array[i + 1]) <= 0);
+		}
+	}
 }
