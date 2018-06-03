@@ -36,4 +36,12 @@ public class InsertionSortTest {
 		}
 	}
 
+	@Test
+	public void recursiveSortTest() {
+		int[] array = {2, -4, 6, 22, -15, 5, 8};
+		solution.recursiveSort(array);
+		for (int i = 0; i < array.length - 2; i ++) {
+			assertTrue(array[i] <= array[i + 1]);
+		}
+	}
 }
