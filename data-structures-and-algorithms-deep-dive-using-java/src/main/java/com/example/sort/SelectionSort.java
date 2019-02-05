@@ -14,14 +14,14 @@ public class SelectionSort {
 	private Utilities utilities = new Utilities();
 
 	public void sort(int[] array) {
-		for (int i = array.length - 1; i > 0; i--) {
-			int max = 0;
-			for (int j = 1; j <= i; j++) {
-				if (array[j] > array[max]) {
-					max = j;
+		for (int lastUnsortedIndex = array.length - 1; lastUnsortedIndex > 0; lastUnsortedIndex--) {
+			int largest = 0;
+			for (int i = 1; i <= lastUnsortedIndex; i++) {
+				if (array[i] > array[largest]) {
+					largest = i;
 				}
 			}
-			utilities.swap(array, i, max);
+			utilities.swap(array, lastUnsortedIndex, largest);
 		}
 	}
 
