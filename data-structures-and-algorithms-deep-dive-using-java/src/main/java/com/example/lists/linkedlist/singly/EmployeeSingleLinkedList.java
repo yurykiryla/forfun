@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.example.lists;
+package com.example.lists.linkedlist.singly;
+
+import com.example.lists.Employee;
 
 /**
  * @author Yury_Kiryla

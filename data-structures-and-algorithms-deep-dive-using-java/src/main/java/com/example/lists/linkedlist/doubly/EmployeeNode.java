@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.example.lists;
+package com.example.lists.linkedlist.doubly;
+
+import com.example.lists.Employee;
 
 /**
  * @author Yury_Kiryla
@@ -11,6 +13,7 @@ public class EmployeeNode {
 
 	private Employee employee;
 	private EmployeeNode next;
+	private EmployeeNode previous;
 
 	/**
 	 * @param employee
@@ -48,6 +51,14 @@ public class EmployeeNode {
 	 */
 	public void setNext(EmployeeNode next) {
 		this.next = next;
+	}
+
+	public EmployeeNode getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(EmployeeNode previous) {
+		this.previous = previous;
 	}
 
 	public String toString() {
