@@ -45,7 +45,7 @@ public class EmployeeDoubleLinkedListTest {
 		list.addToFront(marySmith);
 		list.addToFront(mikeWilson);
 
-		list.printList();
+//		list.printList();
 
 		assertEquals(4, list.getSize());
 	}
@@ -62,7 +62,7 @@ public class EmployeeDoubleLinkedListTest {
 		list.addToEnd(marySmith);
 		list.addToEnd(mikeWilson);
 		
-		list.printList();
+//		list.printList();
 		
 		assertEquals(4, list.getSize());
 	}
@@ -116,5 +116,46 @@ public class EmployeeDoubleLinkedListTest {
 		assertNotNull(list.removeFromEnd());
 		assertEquals(3, list.getSize());
 		assertEquals(johnDoe, list.removeFromEnd().getEmployee());
+	}
+	
+	@Test
+	public void testAddBefore_beforeFirstElement() {
+		Employee janeJones = new Employee("Jane", "Jones", 123);
+		Employee johnDoe = new Employee("John", "Doe", 4567);
+		Employee marySmith = new Employee("Mary", "Smith", 22);
+		Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+		
+		Employee jamesBond = new Employee("James", "Bond", 122);
+
+		list.addToFront(janeJones);
+		list.addToFront(johnDoe);
+		list.addToFront(marySmith);
+		list.addToFront(mikeWilson);
+		
+		assertEquals(1, list.addBefore(jamesBond, mikeWilson));
+		assertEquals(5, list.getSize());
+//		list.printList();
+		assertEquals(jamesBond, list.removeFromFront().getEmployee());
+	}
+	
+	@Test
+	public void testAddBefore_inMiddle() {
+		Employee janeJones = new Employee("Jane", "Jones", 123);
+		Employee johnDoe = new Employee("John", "Doe", 4567);
+		Employee marySmith = new Employee("Mary", "Smith", 22);
+		Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+		
+		Employee jamesBond = new Employee("James", "Bond", 122);
+
+		list.addToFront(janeJones);
+		list.addToFront(johnDoe);
+		list.addToFront(marySmith);
+		list.addToFront(mikeWilson);
+		
+		assertEquals(1, list.addBefore(jamesBond, marySmith));
+		assertEquals(5, list.getSize());
+//		list.printList();
+		list.removeFromFront();
+		assertEquals(jamesBond, list.removeFromFront().getEmployee());
 	}
 }

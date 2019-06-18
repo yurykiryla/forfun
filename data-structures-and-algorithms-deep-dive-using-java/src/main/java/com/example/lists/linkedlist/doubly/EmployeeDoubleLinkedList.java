@@ -101,4 +101,36 @@ public class EmployeeDoubleLinkedList {
 		}
 		System.out.println("null");
 	}
+	
+	public int addBefore(Employee newEmployee, Employee existingEmployee) {
+		if (isEmpty() || newEmployee == null || existingEmployee == null ) {
+			throw new IllegalArgumentException();
+		}
+		
+		EmployeeNode current = head;
+		
+		int result = 0;
+		
+		do {
+			if (current.getEmployee().equals(existingEmployee)) {
+				result++;
+				size++;
+				
+				EmployeeNode newEmployeeNode = new EmployeeNode(newEmployee);
+				newEmployeeNode.setNext(current);
+				
+				if (current.getPrevious() == null) {
+					head = newEmployeeNode;
+				} else {
+					current.getPrevious().setNext(newEmployeeNode);
+					newEmployeeNode.setPrevious(current.getPrevious());
+				}
+				
+				current.setPrevious(newEmployeeNode);
+			}
+			current = current.getNext();
+		} while (current != null);
+		
+		return result;
+	}
 }
