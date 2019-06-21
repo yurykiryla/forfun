@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.lists;
+package com.example.utils;
 
 /**
  * @author Yury_Kiryla

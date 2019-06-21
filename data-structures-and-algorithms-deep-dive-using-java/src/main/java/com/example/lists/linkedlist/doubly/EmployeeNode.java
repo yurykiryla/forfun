@@ -3,7 +3,7 @@
  */
 package com.example.lists.linkedlist.doubly;
 
-import com.example.lists.Employee;
+import com.example.utils.Employee;
 
 /**
  * @author Yury_Kiryla

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.example.lists.Employee;
+import com.example.utils.Employee;
 
 /**
  * @author Yury_Kiryla
@@ -31,7 +31,7 @@ public class EmployeeDoubleLinkedListTest {
 
 	/**
 	 * Test method for
-	 * {@link com.example.lists.linkedlist.singly.EmployeeSingleLinkedList#addToFront(com.example.lists.Employee)}.
+	 * {@link com.example.lists.linkedlist.singly.EmployeeSingleLinkedList#addToFront(com.example.utils.Employee)}.
 	 */
 	@Test
 	public void testAddToFront() {
