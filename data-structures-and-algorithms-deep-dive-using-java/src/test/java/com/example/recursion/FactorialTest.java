@@ -1,17 +1,17 @@
 package com.example.recursion;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.IntStream;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class FactorialTest {
-	
+
 	private Factorial solution;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		solution = new Factorial();
 	}
@@ -19,9 +19,7 @@ public class FactorialTest {
 	@Test
 	public void testIterativeFactorial() {
 		int n = 10;
-		int expected = IntStream
-				.rangeClosed(1, n)
-				.reduce(1, (a, b) -> a * b);
+		int expected = IntStream.rangeClosed(1, n).reduce(1, (a, b) -> a * b);
 		int actual = solution.iterativeFactorial(n);
 		assertEquals(expected, actual);
 	}
@@ -29,9 +27,7 @@ public class FactorialTest {
 	@Test
 	public void testRecursiveFactorial() {
 		int n = 10;
-		int expected = IntStream
-				.rangeClosed(1, n)
-				.reduce(1, (a, b) -> a * b);
+		int expected = IntStream.rangeClosed(1, n).reduce(1, (a, b) -> a * b);
 		int actual = solution.recursiveFactorial(n);
 		assertEquals(expected, actual);
 	}

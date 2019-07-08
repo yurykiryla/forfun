@@ -3,12 +3,14 @@
  */
 package com.example.lists.linkedlist.singly;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.example.lists.linkedlist.singly.EmployeeSingleLinkedList;
 import com.example.utils.Employee;
 
 /**
@@ -22,7 +24,7 @@ public class EmployeeSingleLinkedListTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		list = new EmployeeSingleLinkedList();
 	}
@@ -64,7 +66,7 @@ public class EmployeeSingleLinkedListTest {
 
 		assertFalse(list.isEmpty());
 	}
-	
+
 	@Test
 	public void testRemoveFromFront() {
 		Employee janeJones = new Employee("Jane", "Jones", 123);
@@ -76,7 +78,7 @@ public class EmployeeSingleLinkedListTest {
 		list.addToFront(johnDoe);
 		list.addToFront(marySmith);
 		list.addToFront(mikeWilson);
-		
+
 		assertNotNull(list.removeFromFront());
 		assertEquals(3, list.getSize());
 	}
