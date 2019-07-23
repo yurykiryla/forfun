@@ -1,4 +1,4 @@
-package com.example.lists.stacks;
+package com.example.stacks;
 
 import java.util.Stack;
 

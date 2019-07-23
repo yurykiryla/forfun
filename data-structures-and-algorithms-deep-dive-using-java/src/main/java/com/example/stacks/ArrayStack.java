@@ -1,4 +1,4 @@
-package com.example.lists.stacks.array;
+package com.example.stacks;
 
 import java.util.EmptyStackException;
 

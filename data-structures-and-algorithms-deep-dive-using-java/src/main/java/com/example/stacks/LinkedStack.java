@@ -1,4 +1,4 @@
-package com.example.lists.stacks.linkedlist;
+package com.example.stacks;
 
 import java.util.LinkedList;
 import java.util.ListIterator;

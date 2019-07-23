@@ -1,9 +1,11 @@
-package com.example.lists.stacks;
+package com.example.stacks;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.example.stacks.PalindromeCheck;
 
 class PalindromeCheckTest {
 	
