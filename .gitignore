@@ -16,3 +16,8 @@ out/
 */*.iws
 */gradlew*
 */target/
+*/.mvn/
+*/mvnw*
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.backup
